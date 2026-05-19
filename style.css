@@ -554,26 +554,50 @@ h2 {
 
   /* Hero das páginas internas */
   .hero-visual {
-    min-height: 220px;
+    min-height: auto;
     border-radius: 18px;
     margin-bottom: 20px;
+    padding-bottom: 20px;
+  }
+
+  .hero-topo {
+    padding: 20px;
   }
 
   .hero-visual-conteudo {
-    left: 20px;
-    right: 20px;
-    top: 50%;
+    position: relative;
+    left: auto;
+    right: auto;
+    top: auto;
+    transform: none;
     max-width: 100%;
+    padding: 20px 20px 0;
   }
 
   .hero-visual h1 {
-    font-size: 26px;
-    margin-bottom: 8px;
+    font-size: 28px;
+    margin-bottom: 12px;
   }
 
   .hero-visual p {
     font-size: 13px;
     padding: 10px 14px;
+  }
+
+  /* Mascote no mobile */
+  .mascote-flutuante {
+    position: static !important;
+    margin: 12px 0 0 0 !important;
+    justify-content: flex-start !important;
+  }
+
+  .mascote-bolha {
+    max-width: 200px !important;
+  }
+
+  .mascote-avatar {
+    width: 52px !important;
+    height: 52px !important;
   }
 
   .voltar-hero {
