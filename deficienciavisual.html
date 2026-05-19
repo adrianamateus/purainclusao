@@ -1,0 +1,644 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Deficiência Visual - Laços de Inclusão</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+      /* =====================================================
+         ESTILOS EXTRAS — DEFICIÊNCIA VISUAL
+      ===================================================== */
+
+      /* --- Cards coloridos (estilo condições) --- */
+      .secao-destaques {
+        background: white;
+        border-radius: 28px;
+        padding: 35px;
+        margin-bottom: 30px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+      }
+
+      .grid-destaques {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 22px;
+        margin-top: 28px;
+      }
+
+      .destaque-card {
+        border-radius: 24px;
+        padding: 28px 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .destaque-card::before {
+        content: "";
+        position: absolute;
+        top: -30px;
+        right: -30px;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        opacity: 0.12;
+        background: currentColor;
+      }
+
+      .destaque-card.azul-card {
+        background: #edf6ff;
+        border-left: 5px solid #1e88e5;
+      }
+      .destaque-card.amarelo-card {
+        background: #fffbe6;
+        border-left: 5px solid #f9a825;
+      }
+      .destaque-card.verde-card {
+        background: #ebfff0;
+        border-left: 5px solid #1ea84b;
+      }
+      .destaque-card.roxo-card {
+        background: #f5ebff;
+        border-left: 5px solid #9c27b0;
+      }
+
+      .destaque-icone {
+        font-size: 30px;
+        margin-bottom: 4px;
+      }
+      .destaque-card.azul-card .destaque-icone {
+        color: #1e88e5;
+      }
+      .destaque-card.amarelo-card .destaque-icone {
+        color: #f9a825;
+      }
+      .destaque-card.verde-card .destaque-icone {
+        color: #1ea84b;
+      }
+      .destaque-card.roxo-card .destaque-icone {
+        color: #9c27b0;
+      }
+
+      .destaque-card h3 {
+        font-size: 20px;
+        color: #1a1a2e;
+        margin: 0;
+      }
+      .destaque-card p {
+        font-size: 16px;
+        color: #555;
+        line-height: 1.7;
+        margin: 0;
+      }
+
+      .destaque-tag {
+        display: inline-block;
+        font-size: 12px;
+        font-weight: 700;
+        padding: 4px 12px;
+        border-radius: 20px;
+        width: fit-content;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+      }
+
+      .destaque-card.azul-card .destaque-tag {
+        background: #1e88e5;
+        color: white;
+      }
+      .destaque-card.amarelo-card .destaque-tag {
+        background: #f9a825;
+        color: white;
+      }
+      .destaque-card.verde-card .destaque-tag {
+        background: #1ea84b;
+        color: white;
+      }
+      .destaque-card.roxo-card .destaque-tag {
+        background: #9c27b0;
+        color: white;
+      }
+
+      /* --- Banner gradiente informativo --- */
+      .secao-banner-info {
+        border-radius: 28px;
+        padding: 40px;
+        margin-bottom: 30px;
+        background: linear-gradient(
+          135deg,
+          #1a6b8a 0%,
+          #123d8f 60%,
+          #1b7f3b 100%
+        );
+        color: white;
+        display: flex;
+        gap: 35px;
+        align-items: center;
+      }
+
+      .banner-info-icone {
+        font-size: 80px;
+        opacity: 0.9;
+        min-width: 90px;
+        text-align: center;
+      }
+
+      .banner-info-texto h2 {
+        font-size: 34px;
+        color: white;
+        border: none;
+        padding: 0;
+        margin-bottom: 16px;
+      }
+
+      .banner-info-texto p {
+        font-size: 18px;
+        line-height: 1.8;
+        color: rgba(255, 255, 255, 0.92);
+      }
+
+      /* --- Melhorias gerais --- */
+      .subtitulo-secao {
+        font-size: 18px;
+        color: #666;
+        line-height: 1.7;
+        margin-bottom: 28px;
+        margin-top: -8px;
+      }
+      .recurso-item h3 {
+        font-size: 17px;
+        color: #1a1a2e;
+        margin-bottom: 6px;
+        font-weight: 700;
+      }
+      .recurso-item {
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+      .recurso-item:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      }
+      .bloco-conteudo {
+        border-left: 6px solid #1a6b8a;
+      }
+      .titulo-secao {
+        border-left: 5px solid #e07b2c;
+        padding-left: 16px;
+        margin-bottom: 24px;
+      }
+      .frase-final {
+        font-size: 20px;
+        font-weight: 600;
+        color: #444;
+        background: white;
+        border-radius: 18px;
+        padding: 22px 30px;
+        text-align: center;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      @media (max-width: 1200px) {
+        .secao-banner-info {
+          flex-direction: column;
+          text-align: center;
+        }
+        .banner-info-icone {
+          font-size: 60px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="pagina-deficiencia">
+      <!-- HERO -->
+      <section class="hero-visual">
+        <div class="voltar-hero">
+          <a href="index.html"
+            ><i class="fa-solid fa-arrow-left"></i> Página inicial</a
+          >
+        </div>
+        <div class="hero-topo">
+          <div class="hero-visual-conteudo">
+            <div class="hero-visual-caixa">
+              <div class="hero-visual-icone">
+                <i class="fa-solid fa-eye"></i>
+              </div>
+              <h1>Deficiência Visual</h1>
+              <style>
+                .mascote-flutuante {
+                  position: static;
+                  display: flex;
+                  align-items: flex-end;
+                  justify-content: flex-start;
+                  gap: 10px;
+                  margin: 36px 0 0 0;
+                }
+
+                .mascote-bolha {
+                  background: white;
+                  border: 1.5px solid #1a6b8a;
+                  border-radius: 16px 16px 4px 16px;
+                  padding: 12px 16px;
+                  max-width: 220px;
+                  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+                  animation: mascote-entrada 0.4s ease;
+                }
+
+                .mascote-bolha-titulo {
+                  font-size: 11px;
+                  font-weight: 700;
+                  color: #1a6b8a;
+                  text-transform: uppercase;
+                  letter-spacing: 0.5px;
+                  display: block;
+                  margin-bottom: 1px;
+                }
+
+                .mascote-bolha p {
+                  font-size: 13px;
+                  color: #444;
+                  line-height: 1.5;
+                  margin: 0;
+                }
+
+                .mascote-avatar {
+                  width: 84px;
+                  height: 84px;
+                  border-radius: 50%;
+                  border: 3px solid #1a6b8a;
+                  overflow: hidden;
+                  flex-shrink: 0;
+                  background: #edf6ff;
+                  box-shadow: 0 4px 12px rgba(26, 107, 138, 0.2);
+                }
+
+                .mascote-avatar img {
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  object-position: center top;
+                }
+
+                @keyframes mascote-entrada {
+                  from {
+                    opacity: 0;
+                    transform: translateY(10px);
+                  }
+                  to {
+                    opacity: 1;
+                    transform: translateY(0);
+                  }
+                }
+
+                @media (max-width: 1200px) {
+                  .mascote-flutuante {
+                    margin: 10px 16px 16px;
+                  }
+                  .mascote-bolha {
+                    max-width: 170px;
+                  }
+                }
+              </style>
+
+              <div class="mascote-flutuante">
+                <div class="mascote-bolha">
+                  <span class="mascote-bolha-titulo">Sabia que?</span>
+                  <p id="mascote-frase">
+                    <!-- TROQUE O TEXTO AQUI PARA CADA PÁGINA -->
+                    "Em Curitiba, o Instituto Paranaense de Cegos oferece reabilitação, educação e apoio gratuito para pessoas com deficiência visual. Você não está sozinho!"
+                  </p>
+                </div>
+                <div class="mascote-avatar">
+                  <img
+                    src="assets/mascote.png"
+                    alt="Mascote Laços de Inclusão"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+            </div>
+          </div>
+        </div>
+        
+      </section>
+
+      <!-- O QUE É -->
+      <section class="bloco-conteudo">
+        <div class="icone-bloco azul-claro">
+          <i class="fa-regular fa-file-lines"></i>
+        </div>
+        <div class="texto-bloco">
+          <h2>O que é</h2>
+          <p>
+            A deficiência visual é a perda total ou parcial da capacidade de
+            enxergar, podendo estar presente desde o nascimento ou surgir ao
+            longo da vida em decorrência de doenças, lesões ou do
+            envelhecimento. No Brasil, os dados revelam a dimensão do tema:
+            cerca de 18,6% dos brasileiros convivem com algum tipo de
+            deficiência visual, um número que torna o assunto urgente e
+            necessário.
+          </p>
+          <br />
+          <p>
+            Ela se divide, de forma geral, em dois grupos: a baixa visão e a
+            cegueira. A baixa visão, que pode ser leve, moderada ou profunda, é
+            aquela em que a pessoa ainda utiliza a visão de alguma forma no dia
+            a dia, mesmo que de maneira limitada, e em muitos casos pode ser
+            auxiliada por lentes de aumento, lupas ou treinamentos de
+            orientação. Já a cegueira não significa necessariamente ausência
+            absoluta de visão: ela vai desde a perda total de qualquer percepção
+            visual até a capacidade de distinguir apenas vultos ou variações de
+            luz. Vale lembrar que pessoas com miopia, hipermetropia ou
+            astigmatismo corrigíveis por óculos ou cirurgia não se enquadram
+            nessa classificação.
+          </p>
+          <br />
+          <p>
+            As causas mais comuns no Brasil incluem catarata, glaucoma,
+            retinopatia diabética, degeneração macular e cegueira infantil,
+            condições que reforçam a importância da prevenção e do diagnóstico
+            precoce.
+          </p>
+          <p>
+            Mais do que uma condição médica, a deficiência visual é também uma
+            questão de ambiente e sociedade. Quando os espaços, as tecnologias e
+            as oportunidades são pensados de forma acessível, com leitores de
+            tela, Sistema Braille, pisos táteis e sinalização adequada, a
+            limitação deixa de estar na pessoa e passa a ser responsabilidade do
+            mundo ao redor. Com o suporte certo, pessoas com deficiência visual
+            têm plenas condições de estudar, trabalhar, se relacionar e
+            participar ativamente da vida em sociedade.
+          </p>
+        </div>
+      </section>
+
+      <!-- TIPOS E TECNOLOGIAS — cards coloridos -->
+      <section class="secao-destaques">
+        <h2 class="titulo-secao">Tipos e tecnologias assistivas</h2>
+        <p style="font-size: 18px; color: #666; margin-top: -10px">
+          Conheça as principais formas de deficiência visual e as tecnologias
+          que promovem autonomia e inclusão no dia a dia.
+        </p>
+
+        <div class="grid-destaques">
+          <div class="destaque-card azul-card">
+            <span class="destaque-tag">Baixa visão</span>
+            <div class="destaque-icone">
+              <i class="fa-solid fa-eye-low-vision"></i>
+            </div>
+            <h3>Baixa visão</h3>
+            <p>
+              A pessoa ainda enxerga parcialmente e pode se beneficiar de lupas,
+              lentes de aumento e softwares de ampliação de tela. Com orientação
+              adequada, realiza atividades do cotidiano com bastante autonomia.
+            </p>
+          </div>
+
+          <div class="destaque-card amarelo-card">
+            <span class="destaque-tag">Cegueira</span>
+            <div class="destaque-icone"><i class="fa-solid fa-circle"></i></div>
+            <h3>Cegueira total ou parcial</h3>
+            <p>
+              Vai da ausência total de percepção visual até a distinção de
+              vultos e luz. O Sistema Braille, bengalas e cães-guia são recursos
+              fundamentais para orientação e mobilidade independente.
+            </p>
+          </div>
+
+          <div class="destaque-card verde-card">
+            <span class="destaque-tag">Tecnologia</span>
+            <div class="destaque-icone"><i class="fa-solid fa-laptop"></i></div>
+            <h3>Leitores de tela e acessibilidade digital</h3>
+            <p>
+              Softwares como NVDA e JAWS transformam texto em voz ou Braille
+              digital, permitindo que pessoas cegas utilizem computadores,
+              smartphones e a internet com plena autonomia.
+            </p>
+          </div>
+
+          <div class="destaque-card roxo-card">
+            <span class="destaque-tag">Orientação</span>
+            <div class="destaque-icone">
+              <i class="fa-solid fa-map-location-dot"></i>
+            </div>
+            <h3>Orientação e mobilidade</h3>
+            <p>
+              Técnicas de orientação e mobilidade ensinadas por profissionais
+              especializados, junto com pisos táteis e semáforos sonoros,
+              garantem deslocamento seguro e independente pela cidade.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- BANNER INFO -->
+      <section class="secao-banner-info">
+        <div class="banner-info-icone"><i class="fa-solid fa-braille"></i></div>
+        <div class="banner-info-texto">
+          <h2>O Sistema Braille</h2>
+          <p>
+            Criado em 1824 por Louis Braille, o Sistema Braille é o principal
+            sistema de leitura e escrita para pessoas cegas no mundo todo. No
+            Brasil, seu uso é garantido por lei em materiais educativos,
+            documentos públicos e embalagens de medicamentos. Mais do que um
+            método, é um símbolo de autonomia e dignidade.
+          </p>
+        </div>
+      </section>
+
+      <!-- RECURSOS EM CURITIBA -->
+      <section class="secao-cards">
+        <h2 class="titulo-secao">
+          Recursos de acessibilidade em Curitiba e Região
+        </h2>
+        <div class="grid-recursos">
+          <div class="recurso-item">
+            <div class="icone-recurso azul-suave">
+              <i class="fa-solid fa-building-columns"></i>
+            </div>
+            <div>
+              <h3>Instituto Paranaense de Cegos</h3>
+              <p>
+                O IPC oferece apoio educacional, orientação, reabilitação e
+                atividades para pessoas com deficiência visual em Curitiba.
+              </p>
+            </div>
+          </div>
+          <div class="recurso-item">
+            <div class="icone-recurso laranja-suave">
+              <i class="fa-solid fa-bus"></i>
+            </div>
+            <div>
+              <h3>Transporte acessível</h3>
+              <p>
+                Curitiba possui ônibus adaptados, avisos sonoros e
+                acessibilidade em diversas linhas do transporte coletivo.
+              </p>
+            </div>
+          </div>
+          <div class="recurso-item">
+            <div class="icone-recurso verde-suave">
+              <i class="fa-solid fa-road"></i>
+            </div>
+            <div>
+              <h3>Semáforos sonoros</h3>
+              <p>
+                Alguns cruzamentos da cidade possuem sinais sonoros que auxiliam
+                pessoas com deficiência visual na travessia.
+              </p>
+            </div>
+          </div>
+          <div class="recurso-item">
+            <div class="icone-recurso roxo-suave">
+              <i class="fa-solid fa-handshake-angle"></i>
+            </div>
+            <div>
+              <h3>ADEVIPAR</h3>
+              <p>
+                Associação que auxilia pessoas com deficiência visual no Paraná
+                com apoio, orientação e inclusão social.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- DIREITOS -->
+      <section class="secao-cards">
+        <h2 class="titulo-secao">Direitos e benefícios</h2>
+        <p class="subtitulo-secao">
+          Amparadas pela Lei Brasileira de Inclusão (Lei nº 13.146/2015), as
+          pessoas com deficiência visual têm uma série de direitos garantidos no
+          Brasil. Conhecê-los é o primeiro passo para exercê-los.
+        </p>
+        <div class="grid-recursos">
+          <div class="recurso-item">
+            <div class="icone-recurso azul-suave">
+              <i class="fa-solid fa-star-of-life"></i>
+            </div>
+            <div>
+              <h3>Atendimento prioritário</h3>
+              <p>
+                Direito a atendimento preferencial em bancos, repartições
+                públicas e serviços de saúde, previsto no Estatuto da Pessoa com
+                Deficiência.
+              </p>
+            </div>
+          </div>
+          <div class="recurso-item">
+            <div class="icone-recurso laranja-suave">
+              <i class="fa-solid fa-dog"></i>
+            </div>
+            <div>
+              <h3>Direito ao cão-guia</h3>
+              <p>
+                Permissão garantida por lei para circular com cão-guia em
+                qualquer espaço público ou privado, incluindo transporte
+                coletivo.
+              </p>
+            </div>
+          </div>
+          <div class="recurso-item">
+            <div class="icone-recurso verde-suave">
+              <i class="fa-solid fa-universal-access"></i>
+            </div>
+            <div>
+              <h3>Acessibilidade</h3>
+              <p>
+                Espaços públicos e privados devem ter pisos táteis, sinalização
+                adequada e sistemas de orientação. Sites públicos seguem as
+                mesmas regras.
+              </p>
+            </div>
+          </div>
+          <div class="recurso-item">
+            <div class="icone-recurso roxo-suave">
+              <i class="fa-solid fa-briefcase"></i>
+            </div>
+            <div>
+              <h3>Cotas no trabalho</h3>
+              <p>
+                Empresas com 100 ou mais funcionários devem reservar entre 2% e
+                5% das vagas para pessoas com deficiência, com proteção contra
+                demissão arbitrária.
+              </p>
+            </div>
+          </div>
+          <div class="recurso-item">
+            <div class="icone-recurso azul-suave">
+              <i class="fa-solid fa-ticket"></i>
+            </div>
+            <div>
+              <h3>Meia-entrada</h3>
+              <p>
+                Direito à meia-entrada em cinemas, teatros, shows e eventos
+                esportivos, conforme a Lei nº 12.933/2013.
+              </p>
+            </div>
+          </div>
+          <div class="recurso-item">
+            <div class="icone-recurso laranja-suave">
+              <i class="fa-solid fa-hand-holding-dollar"></i>
+            </div>
+            <div>
+              <h3>BPC</h3>
+              <p>
+                Benefício de Prestação Continuada garante um salário mínimo
+                mensal a quem não tem meios de se manter. Não exige contribuição
+                ao INSS.
+              </p>
+            </div>
+          </div>
+          <div class="recurso-item">
+            <div class="icone-recurso verde-suave">
+              <i class="fa-solid fa-umbrella"></i>
+            </div>
+            <div>
+              <h3>Aposentadoria especial</h3>
+              <p>
+                Pessoas com deficiência visual têm direito a aposentadoria em
+                condições diferenciadas, por invalidez ou por idade, conforme
+                avaliação do INSS.
+              </p>
+            </div>
+          </div>
+          <div class="recurso-item">
+            <div class="icone-recurso roxo-suave">
+              <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+            <div>
+              <h3>Educação inclusiva</h3>
+              <p>
+                Estudantes com deficiência têm direito a matrícula em escolas
+                regulares com atendimento educacional especializado e cotas em
+                concursos públicos.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <p class="frase-final" style="display: flex; align-items: center; justify-content: center; gap: 16px;">
+  <img src="assets/Logo.jpeg" alt="Laços de Inclusão" style="width: 150px; border-radius: 10px;" />
+  A inclusão começa com informação e respeito.
+</p>
+    </main>
+   
+    </style>
+    
+  </body>
+</html>

@@ -1,0 +1,748 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Deficiência Intelectual - Laços de Inclusão</title>
+
+    <!-- FONT AWESOME -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+      /* =====================================================
+         ESTILOS EXTRAS — EXCLUSIVOS DESTA PÁGINA
+      ===================================================== */
+
+      /* Seção de condições / cards coloridos */
+      .secao-condicoes {
+        background: white;
+        border-radius: 28px;
+        padding: 35px;
+        margin-bottom: 30px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+      }
+
+      .grid-condicoes {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 22px;
+        margin-top: 28px;
+      }
+
+      .condicao-card {
+        border-radius: 24px;
+        padding: 28px 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .condicao-card::before {
+        content: "";
+        position: absolute;
+        top: -30px;
+        right: -30px;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        opacity: 0.12;
+        background: currentColor;
+      }
+
+      .condicao-card.azul-card {
+        background: #edf6ff;
+        border-left: 5px solid #1e88e5;
+      }
+
+      .condicao-card.amarelo-card {
+        background: #fffbe6;
+        border-left: 5px solid #f9a825;
+      }
+
+      .condicao-card.verde-card {
+        background: #ebfff0;
+        border-left: 5px solid #1ea84b;
+      }
+
+      .condicao-card.roxo-card {
+        background: #f5ebff;
+        border-left: 5px solid #9c27b0;
+      }
+
+      .condicao-icone {
+        font-size: 30px;
+        margin-bottom: 4px;
+      }
+
+      .condicao-card.azul-card .condicao-icone { color: #1e88e5; }
+      .condicao-card.amarelo-card .condicao-icone { color: #f9a825; }
+      .condicao-card.verde-card .condicao-icone { color: #1ea84b; }
+      .condicao-card.roxo-card .condicao-icone { color: #9c27b0; }
+
+      .condicao-card h3 {
+        font-size: 20px;
+        color: #1a1a2e;
+        margin: 0;
+      }
+
+      .condicao-card p {
+        font-size: 16px;
+        color: #555;
+        line-height: 1.7;
+        margin: 0;
+      }
+
+      .condicao-tag {
+        display: inline-block;
+        font-size: 12px;
+        font-weight: 700;
+        padding: 4px 12px;
+        border-radius: 20px;
+        width: fit-content;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+      }
+
+      .condicao-card.azul-card .condicao-tag { background: #1e88e5; color: white; }
+      .condicao-card.amarelo-card .condicao-tag { background: #f9a825; color: white; }
+      .condicao-card.verde-card .condicao-tag { background: #1ea84b; color: white; }
+      .condicao-card.roxo-card .condicao-tag { background: #9c27b0; color: white; }
+
+      /* Seção neurodiversidade — banner colorido */
+      .secao-neurodiversidade {
+        border-radius: 28px;
+        padding: 40px;
+        margin-bottom: 30px;
+        background: linear-gradient(135deg, #1a6b8a 0%, #123d8f 50%, #9c27b0 100%);
+        color: white;
+        display: flex;
+        gap: 35px;
+        align-items: center;
+      }
+
+      .neurodiversidade-icone {
+        font-size: 80px;
+        opacity: 0.9;
+        min-width: 90px;
+        text-align: center;
+      }
+
+      .neurodiversidade-texto h2 {
+        font-size: 34px;
+        color: white;
+        border: none;
+        padding: 0;
+        margin-bottom: 16px;
+      }
+
+      .neurodiversidade-texto p {
+        font-size: 18px;
+        line-height: 1.8;
+        color: rgba(255, 255, 255, 0.92);
+      }
+
+      /* Seção "Sabia que?" — linha do tempo / fatos */
+      .secao-fatos {
+        background: white;
+        border-radius: 28px;
+        padding: 35px;
+        margin-bottom: 30px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+      }
+
+      .grid-fatos {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 18px;
+        margin-top: 28px;
+      }
+
+      .fato-item {
+        background: #fafafa;
+        border-radius: 20px;
+        padding: 24px 20px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .fato-numero {
+        font-size: 38px;
+        font-weight: 800;
+        color: #123d8f;
+        line-height: 1;
+      }
+
+      .fato-label {
+        font-size: 15px;
+        color: #666;
+        line-height: 1.5;
+      }
+
+      .fato-icone {
+        font-size: 28px;
+        margin-bottom: 4px;
+      }
+
+      @media (max-width: 1200px) {
+        .secao-neurodiversidade {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .neurodiversidade-icone {
+          font-size: 60px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="pagina-deficiencia">
+
+      <!-- =========================================
+           HERO / BANNER
+      ========================================== -->
+
+      <section class="hero-visual" style="background-image: url('assets/banner-visual.png');">
+        <div class="voltar-hero">
+          <a href="index.html">
+            <i class="fa-solid fa-arrow-left"></i>
+            Página inicial
+          </a>
+        </div>
+
+        <div class="hero-topo">
+          <div class="hero-visual-conteudo">
+            <div class="hero-visual-caixa">
+              <div class="hero-visual-icone">
+                <i class="fa-solid fa-brain"></i>
+              </div>
+
+              <h1>Deficiência Intelectual</h1>
+              
+
+              <style>
+                .mascote-flutuante {
+                  position: static;
+                  display: flex;
+                  align-items: flex-end;
+                  justify-content: flex-start;
+                  gap: 10px;
+                  margin: 36px 0 0 0;
+                }
+
+                .mascote-bolha {
+                  background: white;
+                  border: 1.5px solid #1a6b8a;
+                  border-radius: 16px 16px 4px 16px;
+                  padding: 12px 16px;
+                  max-width: 220px;
+                  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+                  animation: mascote-entrada 0.4s ease;
+                }
+
+                .mascote-bolha-titulo {
+                  font-size: 11px;
+                  font-weight: 700;
+                  color: #1a6b8a;
+                  text-transform: uppercase;
+                  letter-spacing: 0.5px;
+                  display: block;
+                  margin-bottom: 1px;
+                }
+
+                .mascote-bolha p {
+                  font-size: 13px;
+                  color: #444;
+                  line-height: 1.5;
+                  margin: 0;
+                }
+
+                .mascote-avatar {
+                  width: 84px;
+                  height: 84px;
+                  border-radius: 50%;
+                  border: 3px solid #1a6b8a;
+                  overflow: hidden;
+                  flex-shrink: 0;
+                  background: #edf6ff;
+                  box-shadow: 0 4px 12px rgba(26, 107, 138, 0.2);
+                }
+
+                .mascote-avatar img {
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  object-position: center top;
+                }
+
+                @keyframes mascote-entrada {
+                  from {
+                    opacity: 0;
+                    transform: translateY(10px);
+                  }
+                  to {
+                    opacity: 1;
+                    transform: translateY(0);
+                  }
+                }
+
+                @media (max-width: 1200px) {
+                  .mascote-flutuante {
+                    margin: 10px 16px 16px;
+                  }
+                  .mascote-bolha {
+                    max-width: 170px;
+                  }
+                }
+              </style>
+
+              <div class="mascote-flutuante">
+                <div class="mascote-bolha">
+                  <span class="mascote-bolha-titulo">Sabia que?</span>
+                  <p id="mascote-frase">
+                    <!-- TROQUE O TEXTO AQUI PARA CADA PÁGINA -->
+                    "Em Curitiba, a APAE oferece educação especializada, terapias e apoio familiar totalmente gratuito."
+                  </p>
+                </div>
+                <div class="mascote-avatar">
+                  <img
+                    src="assets/mascote.png"
+                    alt="Mascote Laços de Inclusão"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+              
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================
+           O QUE É
+      ========================================== -->
+
+      <section class="bloco-conteudo">
+        <div class="icone-bloco azul-claro">
+          <i class="fa-regular fa-file-lines"></i>
+        </div>
+
+        <div class="texto-bloco">
+          <h2>O que é</h2>
+
+          <p>
+            A deficiência intelectual é caracterizada por limitações
+            significativas no funcionamento cognitivo, como raciocínio,
+            resolução de problemas, planejamento e pensamento abstrato, e no
+            comportamento adaptativo, que envolve habilidades práticas, sociais
+            e conceituais do dia a dia. Essas limitações se manifestam antes
+            dos 18 anos e podem variar de leve a profunda, exigindo diferentes
+            níveis de suporte ao longo da vida.
+          </p>
+          <br />
+
+          <p>
+            É importante diferenciar deficiência intelectual de outras
+            condições relacionadas, mas distintas. O Transtorno do Espectro
+            Autista (TEA), a Síndrome de Down e o TDAH são condições que
+            frequentemente coexistem com a deficiência intelectual, mas não são
+            sinônimos: uma pessoa pode ter autismo sem deficiência intelectual,
+            assim como pode ter Síndrome de Down com ou sem TEA associado. Cada
+            diagnóstico tem características próprias e requer uma abordagem
+            individualizada.
+          </p>
+          <br />
+
+          <p>
+            As causas são variadas e incluem fatores genéticos, como a trissomia
+            do cromossomo 21 (Síndrome de Down); infecções durante a gestação,
+            como rubéola e toxoplasmose; complicações no parto, como privação de
+            oxigênio; e fatores ambientais, como exposição a substâncias tóxicas
+            na primeira infância. O diagnóstico precoce é fundamental para que
+            a criança acesse intervenções que promovam o máximo de seu
+            desenvolvimento.
+          </p>
+
+          <p>
+            Com o suporte certo, educação especializada, terapias, tecnologia
+            assistiva e uma rede de apoio familiar e social, pessoas com
+            deficiência intelectual têm plenas condições de se desenvolver,
+            conquistar autonomia, trabalhar e participar ativamente da vida em
+            comunidade. O limite, muitas vezes, não está na pessoa: está nas
+            barreiras que a sociedade ainda precisa derrubar.
+          </p>
+        </div>
+      </section>
+
+      <!-- =========================================
+           CONDIÇÕES RELACIONADAS
+      ========================================== -->
+
+      <section class="secao-condicoes">
+        <h2 class="titulo-secao">Condições relacionadas</h2>
+
+        <p style="font-size: 18px; color: #666; margin-top: -10px;">
+          Conheça algumas das principais condições que podem estar associadas à
+          deficiência intelectual ou que afetam o desenvolvimento cognitivo e
+          comportamental.
+        </p>
+
+        <div class="grid-condicoes">
+
+          <!-- TEA -->
+          <div class="condicao-card azul-card">
+            <span class="condicao-tag">TEA</span>
+            <div class="condicao-icone"><i class="fa-solid fa-puzzle-piece"></i></div>
+            <h3>Transtorno do Espectro Autista</h3>
+            <p>
+              O autismo é uma condição do neurodesenvolvimento que afeta a
+              comunicação social e pode apresentar comportamentos repetitivos e
+              interesses restritos. Não é uma doença, é uma forma legítima de
+              ser no mundo. No Brasil, estima-se que cerca de 2 milhões de
+              pessoas sejam autistas. A Lei nº 12.764/2012 reconhece o autismo
+              como deficiência para todos os efeitos legais.
+            </p>
+          </div>
+
+          <!-- Síndrome de Down -->
+          <div class="condicao-card amarelo-card">
+            <span class="condicao-tag">Síndrome de Down</span>
+            <div class="condicao-icone"><i class="fa-solid fa-dna"></i></div>
+            <h3>Síndrome de Down</h3>
+            <p>
+              Causada pela presença de um cromossomo 21 extra (trissomia 21),
+              é a causa genética mais comum de deficiência intelectual. No
+              Brasil, estima-se que 1 em cada 700 bebês nasça com a condição.
+              Com estimulação precoce e inclusão, pessoas com Síndrome de Down
+              alcançam grande desenvolvimento e autonomia ao longo da vida.
+            </p>
+          </div>
+
+          <!-- TDAH -->
+          <div class="condicao-card verde-card">
+            <span class="condicao-tag">TDAH</span>
+            <div class="condicao-icone"><i class="fa-solid fa-bolt"></i></div>
+            <h3>Transtorno do Déficit de Atenção e Hiperatividade</h3>
+            <p>
+              O TDAH afeta a atenção, o controle de impulsos e, em muitos
+              casos, o nível de atividade. Pode ocorrer isoladamente ou em
+              comorbidade com TEA e deficiência intelectual. Não é falta de
+              esforço ou de educação, é uma condição neurobiológica que,
+              com o suporte adequado, tem seu impacto significativamente
+              reduzido na vida escolar e social.
+            </p>
+          </div>
+
+          <!-- Outras condições -->
+          <div class="condicao-card roxo-card">
+            <span class="condicao-tag">Outras condições</span>
+            <div class="condicao-icone"><i class="fa-solid fa-circle-nodes"></i></div>
+            <h3>Síndrome de Williams, X Frágil e outras</h3>
+            <p>
+              Existem centenas de síndromes genéticas que podem causar
+              deficiência intelectual, como a Síndrome de Williams (sociável e
+              musical) e o X Frágil (causa mais comum ligada ao cromossomo X).
+              Cada condição tem perfil próprio de habilidades e desafios,
+              reforçando a importância de um olhar individualizado.
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- =========================================
+           NEURODIVERSIDADE
+      ========================================== -->
+
+      <section class="secao-neurodiversidade">
+        <div class="neurodiversidade-icone">
+          <i class="fa-solid fa-infinity"></i>
+        </div>
+        <div class="neurodiversidade-texto">
+          <h2>O que é neurodiversidade?</h2>
+          <p>
+            Neurodiversidade é o conceito que reconhece as variações naturais no
+            funcionamento do cérebro humano como parte da diversidade da espécie.
+            Autismo, TDAH, dislexia, discalculia e outras condições são formas
+            diferentes, não inferiores, de processar o mundo. Pessoas
+            neurodivergentes podem ter desafios em algumas áreas e habilidades
+            extraordinárias em outras. Respeitar a neurodiversidade é entender
+            que não existe uma única forma "correta" de pensar, aprender ou
+            se relacionar.
+          </p>
+        </div>
+      </section>
+
+      <!-- =========================================
+           SABIA QUE? — DADOS
+      ========================================== -->
+
+      <section class="secao-fatos">
+        <h2 class="titulo-secao">Sabia que?</h2>
+
+        <div class="grid-fatos">
+          <div class="fato-item">
+            <div class="fato-icone" style="color: #1e88e5;">
+              <i class="fa-solid fa-users"></i>
+            </div>
+            <div class="fato-numero">2 mi</div>
+            <div class="fato-label">de brasileiros são autistas, segundo estimativas da Sociedade Brasileira de Pediatria</div>
+          </div>
+
+          <div class="fato-item">
+            <div class="fato-icone" style="color: #f9a825;">
+              <i class="fa-solid fa-baby"></i>
+            </div>
+            <div class="fato-numero">1:700</div>
+            <div class="fato-label">é a proporção de nascimentos com Síndrome de Down no Brasil</div>
+          </div>
+
+          <div class="fato-item">
+            <div class="fato-icone" style="color: #1ea84b;">
+              <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+            <div class="fato-numero">474</div>
+            <div class="fato-label">alunos atendidos mensalmente só pela APAE Curitiba, com 40 mil atendimentos terapêuticos por ano</div>
+          </div>
+
+          <div class="fato-item">
+            <div class="fato-icone" style="color: #9c27b0;">
+              <i class="fa-solid fa-scale-balanced"></i>
+            </div>
+            <div class="fato-numero">2012</div>
+            <div class="fato-label">ano em que o Brasil reconheceu o autismo como deficiência pela Lei Berenice Piana</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================
+           RECURSOS EM CURITIBA
+      ========================================== -->
+
+      <section class="secao-cards">
+        <h2 class="titulo-secao">
+          Recursos de acessibilidade em Curitiba e Região
+        </h2>
+
+        <div class="grid-recursos">
+
+          <div class="recurso-item">
+            <div class="icone-recurso azul-suave">
+              <i class="fa-solid fa-building-columns"></i>
+            </div>
+            <div>
+              <h3>APAE Curitiba</h3>
+              <p>
+                Fundada em 1962, a APAE Curitiba atende pessoas com deficiência
+                intelectual e múltipla (incluindo autismo e Síndrome de Down)
+                com cinco escolas especializadas, três centros terapêuticos
+                gratuitos e sete Casas Lar espalhadas pela cidade.
+              </p>
+            </div>
+          </div>
+
+          <div class="recurso-item">
+            <div class="icone-recurso laranja-suave">
+              <i class="fa-solid fa-heart-pulse"></i>
+            </div>
+            <div>
+              <h3>Centros terapêuticos gratuitos</h3>
+              <p>
+                A APAE Curitiba disponibiliza atendimentos em psicologia,
+                fisioterapia, fonoaudiologia e terapia ocupacional sem custo
+                para pessoas com deficiência intelectual ou múltipla,
+                realizando em média 3,4 mil atendimentos mensais.
+              </p>
+            </div>
+          </div>
+
+          <div class="recurso-item">
+            <div class="icone-recurso verde-suave">
+              <i class="fa-solid fa-school"></i>
+            </div>
+            <div>
+              <h3>Escola de Estimulação CEDAE</h3>
+              <p>
+                Voltada para crianças de 0 a 5 anos e 11 meses com deficiência
+                intelectual ou neuromotora, a CEDAE fica no Batel e oferece
+                estimulação precoce fundamental para o desenvolvimento infantil.
+              </p>
+            </div>
+          </div>
+
+          <div class="recurso-item">
+            <div class="icone-recurso roxo-suave">
+              <i class="fa-solid fa-handshake-angle"></i>
+            </div>
+            <div>
+              <h3>DPCD – Prefeitura de Curitiba</h3>
+              <p>
+                O Departamento dos Direitos da Pessoa com Deficiência orienta
+                famílias, articula políticas públicas e oferece suporte à
+                inclusão social e no mercado de trabalho para pessoas com
+                deficiência intelectual em Curitiba.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- =========================================
+           DIREITOS
+      ========================================== -->
+
+      <section class="secao-cards">
+        <h2 class="titulo-secao">Direitos e benefícios</h2>
+
+        <p class="subtitulo-secao">
+          Amparadas pela Lei Brasileira de Inclusão (Lei nº 13.146/2015) e pela
+          Lei Berenice Piana (Lei nº 12.764/2012), pessoas com deficiência
+          intelectual e autismo têm direitos garantidos em todas as áreas da
+          vida. Conhecê-los faz toda a diferença.
+        </p>
+
+        <div class="grid-recursos">
+
+          <div class="recurso-item">
+            <div class="icone-recurso azul-suave">
+              <i class="fa-solid fa-star-of-life"></i>
+            </div>
+            <div>
+              <h3>Atendimento prioritário</h3>
+              <p>
+                Direito a atendimento preferencial em bancos, repartições
+                públicas e serviços de saúde, previsto no Estatuto da Pessoa
+                com Deficiência.
+              </p>
+            </div>
+          </div>
+
+          <div class="recurso-item">
+            <div class="icone-recurso laranja-suave">
+              <i class="fa-solid fa-puzzle-piece"></i>
+            </div>
+            <div>
+              <h3>Direitos específicos do autismo</h3>
+              <p>
+                A Lei Berenice Piana garante à pessoa com TEA acesso a
+                diagnóstico precoce, atendimento multiprofissional e inclusão
+                escolar, além de reconhecê-la como pessoa com deficiência para
+                todos os efeitos legais.
+              </p>
+            </div>
+          </div>
+
+          <div class="recurso-item">
+            <div class="icone-recurso verde-suave">
+              <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+            <div>
+              <h3>Educação inclusiva</h3>
+              <p>
+                Toda criança com deficiência intelectual tem direito a matrícula
+                em escola regular com atendimento educacional especializado (AEE)
+                no contraturno, além de cotas em concursos públicos.
+              </p>
+            </div>
+          </div>
+
+          <div class="recurso-item">
+            <div class="icone-recurso roxo-suave">
+              <i class="fa-solid fa-briefcase"></i>
+            </div>
+            <div>
+              <h3>Cotas no trabalho</h3>
+              <p>
+                Empresas com 100 ou mais funcionários devem reservar entre 2% e
+                5% das vagas para pessoas com deficiência, com proteção contra
+                demissão arbitrária.
+              </p>
+            </div>
+          </div>
+
+          <div class="recurso-item">
+            <div class="icone-recurso azul-suave">
+              <i class="fa-solid fa-hand-holding-dollar"></i>
+            </div>
+            <div>
+              <h3>BPC</h3>
+              <p>
+                Benefício de Prestação Continuada garante um salário mínimo
+                mensal a quem não tem meios de se manter. Não exige contribuição
+                ao INSS.
+              </p>
+            </div>
+          </div>
+
+          <div class="recurso-item">
+            <div class="icone-recurso laranja-suave">
+              <i class="fa-solid fa-ticket"></i>
+            </div>
+            <div>
+              <h3>Meia-entrada</h3>
+              <p>
+                Direito à meia-entrada em cinemas, teatros, shows e eventos
+                esportivos, conforme a Lei nº 12.933/2013.
+              </p>
+            </div>
+          </div>
+
+          <div class="recurso-item">
+            <div class="icone-recurso verde-suave">
+              <i class="fa-solid fa-umbrella"></i>
+            </div>
+            <div>
+              <h3>Aposentadoria especial</h3>
+              <p>
+                Pessoas com deficiência intelectual têm direito a aposentadoria
+                em condições diferenciadas, por invalidez ou por idade, conforme
+                avaliação do INSS.
+              </p>
+            </div>
+          </div>
+
+          <div class="recurso-item">
+            <div class="icone-recurso roxo-suave">
+              <i class="fa-solid fa-house-heart"></i>
+            </div>
+            <div>
+              <h3>Residências inclusivas</h3>
+              <p>
+                O poder público deve oferecer alternativas de moradia assistida
+                para pessoas com deficiência intelectual em situação de
+                vulnerabilidade, como as Casas Lar mantidas pela APAE Curitiba.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- =========================================
+           FRASE FINAL
+      ========================================== -->
+
+      <p class="frase-final" style="display: flex; align-items: center; justify-content: center; gap: 16px;">
+  <img src="assets/Logo.jpeg" alt="Laços de Inclusão" style="width: 150px; border-radius: 10px;" />
+  A inclusão começa com informação e respeito.
+</p>
+
+    </main>
+  </body>
+</html>

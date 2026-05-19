@@ -1,0 +1,640 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Laços de Inclusão</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+
+    <!-- CSS externo -->
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+      /* =====================================================
+         MENU DE NAVEGAÇÃO
+      ===================================================== */
+      .menu-nav {
+        position: sticky;
+        top: 0;
+        z-index: 999;
+        background: white;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+        border-radius: 0 0 18px 18px;
+        margin: -20px -20px 0;
+        padding: 0 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 64px;
+      }
+
+      .menu-nav-links {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+
+      .menu-nav-links a {
+        text-decoration: none;
+        color: #555;
+        font-size: 15px;
+        font-weight: 600;
+        padding: 8px 18px;
+        border-radius: 10px;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .menu-nav-links a:hover {
+        background: #edf6ff;
+        color: #1a6b8a;
+      }
+
+      /* Corrige o scroll para não ficar atrás do menu fixo */
+      #inicio,
+      #deficiencias,
+      #servicos,
+      #sobre {
+        scroll-margin-top: 80px;
+      }
+
+      @media (max-width: 700px) {
+        .menu-nav {
+          padding: 10px 16px;
+          height: auto;
+          flex-wrap: wrap;
+          gap: 8px;
+        }
+        .menu-nav-links {
+          flex-wrap: wrap;
+          gap: 6px;
+          justify-content: center;
+        }
+        .menu-nav-links a {
+          font-size: 13px;
+          padding: 6px 12px;
+        }
+      }
+    </style>
+
+    <style>
+      .hero-sobre {
+        background: white;
+        border-radius: 32px;
+        padding: 45px 60px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        border: 1px solid #eee;
+        display: flex;
+        align-items: center;
+        gap: 50px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-logo {
+        width: 170px;
+        min-width: 170px;
+        display: block;
+        border-radius: 20px;
+      }
+
+      .hero-sobre-conteudo {
+        max-width: 560px;
+      }
+
+      .hero-sobre h1 {
+        font-size: 44px;
+        font-weight: 700;
+        color: #123d8f;
+        line-height: 1.1;
+        margin-bottom: 14px;
+      }
+
+      .hero-sobre-sub {
+        font-size: 18px;
+        color: #666;
+        line-height: 1.7;
+        border-left: 4px solid #e07b2c;
+        padding-left: 16px;
+        max-width: 100%;
+        white-space: nowrap;
+      }
+
+      .secao-historia {
+        background: white;
+        border-radius: 28px;
+        padding: 45px 50px;
+        margin-bottom: 30px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 55px;
+        align-items: center;
+      }
+
+      .historia-texto h2 {
+        font-size: 38px;
+        color: #123d8f;
+        margin-bottom: 24px;
+        border-left: 5px solid #e07b2c;
+        padding-left: 16px;
+        line-height: 1.2;
+        margin-top: 0;
+      }
+
+      .historia-texto p {
+        font-size: 19px;
+        color: #555;
+        line-height: 1.9;
+        margin-bottom: 16px;
+        text-align: justify;
+      }
+
+      .historia-texto strong {
+        color: #1a6b8a;
+      }
+
+      .historia-foto {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .foto-bruno {
+        width: 300px;
+        border-radius: 28px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.14);
+        object-fit: cover;
+        aspect-ratio: 3/4;
+        display: block;
+      }
+
+      .foto-legenda {
+        font-size: 14px;
+        color: #888;
+        font-style: italic;
+        text-align: center;
+      }
+
+      .foto-legenda strong {
+        color: #123d8f;
+        font-style: normal;
+      }
+
+      .secao-mascote {
+        background: white;
+        border-radius: 28px;
+        padding: 45px 50px;
+        margin-bottom: 30px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 55px;
+        align-items: center;
+      }
+
+      .mascote-foto {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .foto-mascote {
+        width: 280px;
+        height: auto;
+        border-radius: 28px;
+        box-shadow: 0 12px 35px rgba(26, 107, 138, 0.18);
+        border: 6px solid #edf6ff;
+        display: block;
+      }
+
+      .mascote-texto h2 {
+        font-size: 38px;
+        color: #123d8f;
+        margin-bottom: 24px;
+        border-left: 5px solid #1b7f3b;
+        padding-left: 16px;
+        line-height: 1.2;
+        margin-top: 0;
+      }
+
+      .mascote-texto p {
+        font-size: 19px;
+        color: #555;
+        line-height: 1.9;
+        margin-bottom: 16px;
+        text-align: justify;
+      }
+      .secao-dedicatoria {
+        border-radius: 28px;
+        padding: 50px;
+        margin-bottom: 30px;
+        background: linear-gradient(
+          135deg,
+          #1b7f3b 0%,
+          #1a6b8a 50%,
+          #123d8f 100%
+        );
+        color: white;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .secao-dedicatoria::before {
+        content: "💙";
+        position: absolute;
+        font-size: 280px;
+        opacity: 0.05;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        line-height: 1;
+        pointer-events: none;
+      }
+
+      .secao-dedicatoria .dedicatoria-emoji {
+        font-size: 48px;
+        display: block;
+        margin-bottom: 18px;
+      }
+
+      .secao-dedicatoria h2 {
+        font-size: 38px;
+        color: white;
+        border: none;
+        padding: 0;
+        margin: 0 0 18px;
+      }
+
+      .secao-dedicatoria p {
+        font-size: 20px;
+        color: rgba(255, 255, 255, 0.92);
+        line-height: 1.8;
+        max-width: 880px;
+        margin: 0 auto;
+      }
+
+      .sobre-wrapper {
+        width: 92%;
+        max-width: 1400px;
+        margin: 0 auto 60px;
+      }
+
+      /* --- Hero banner index --- */
+      .hero-index {
+        width: 92%;
+        max-width: 1400px;
+        margin: 20px auto 35px;
+        min-height: 400px;
+        background-image: url("assets/banner-visual.png");
+        background-size: cover;
+        background-position: center;
+        border-radius: 32px;
+        overflow: hidden;
+        position: relative;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      }
+
+      .hero-index-conteudo {
+        position: absolute;
+        left: 60px;
+        top: 50%;
+        transform: translateY(-50%);
+        max-width: 580px;
+        z-index: 2;
+      }
+
+      .hero-index-logo {
+        width: 290px;
+        background: rgba(255, 255, 255, 0.92);
+        border-radius: 18px;
+        padding: 8px;
+        margin-bottom: 22px;
+        display: block;
+      }
+
+      .hero-index h1 {
+        font-size: 38px;
+        font-weight: 500;
+        color: #123d8f;
+        line-height: 1.15;
+        margin-bottom: 10px;
+      }
+
+      .hero-index p {
+        font-size: 18px;
+        color: #555;
+        line-height: 0.6;
+        background: rgba(255, 255, 255, 0.85);
+        padding: 20px 20px;
+        border-radius: 14px;
+      }
+
+      @media (max-width: 1200px) {
+        .hero-index-conteudo {
+          left: 40px;
+          max-width: 440px;
+        }
+        .hero-index h1 {
+          font-size: 36px;
+        }
+        .hero-index p {
+          font-size: 16px;
+        }
+      }
+
+      @media (max-width: 900px) {
+        .hero-sobre {
+          padding: 30px;
+          gap: 24px;
+        }
+        .hero-sobre h1 {
+          font-size: 32px;
+        }
+        .secao-historia,
+        .secao-mascote {
+          grid-template-columns: 1fr;
+          padding: 30px;
+          gap: 30px;
+        }
+        .secao-mascote .mascote-foto {
+          order: -1;
+        }
+        .foto-bruno {
+          width: 100%;
+          max-width: 320px;
+        }
+        .foto-mascote {
+          width: 200px;
+          height: 200px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- MENU DE NAVEGAÇÃO -->
+    <nav class="menu-nav">
+      <div class="menu-nav-links">
+        <a href="#inicio"><i class="fa-solid fa-house"></i> Início</a>
+        <a href="#deficiencias"
+          ><i class="fa-solid fa-universal-access"></i> Deficiências</a
+        >
+        <a href="#servicos"><i class="fa-solid fa-list-check"></i> Serviços</a>
+        <a href="#sobre"><i class="fa-solid fa-heart"></i> Sobre nós</a>
+      </div>
+    </nav>
+
+    <!-- HERO BANNER -->
+    <section class="hero-index" id="inicio">
+      <div class="hero-index-conteudo">
+        <img
+          class="hero-index-logo"
+          src="assets/Logo.jpeg"
+          alt="Laços de Inclusão"
+        />
+      </div>
+    </section>
+
+    <!-- CONTEÚDO -->
+    <main class="conteudo">
+      <h2>Um portal de apoio, informação e cidadania em um só lugar.</h2>
+
+      <p>
+        Mais de 18 milhões de brasileiros vivem com algum tipo de deficiência. O
+        acesso à informação clara, confiável e acessível é essencial para
+        garantir direitos, facilitar o acesso a serviços e promover maior
+        autonomia no dia a dia.
+      </p>
+      <br />
+
+      <p>
+        Este site reúne informações sobre benefícios, serviços públicos e
+        recursos disponíveis em Curitiba e Região, incluindo orientações sobre
+        documentação, locais de atendimento e procedimentos necessários. O
+        objetivo é centralizar conteúdos úteis em um só lugar, de forma simples
+        e organizada, para ajudar você a encontrar as informações de que precisa
+        com mais facilidade.
+      </p>
+    </main>
+
+    <!-- CARDS -->
+    <!-- TIPOS DE DEFICIENCIA -->
+    <section class="tipos-deficiencia" id="deficiencias">
+      <div class="tipos-texto">
+        <h2>Tipos de Deficiência</h2>
+
+        <p>Conhecer é o primeiro passo para incluir e respeitar.</p>
+      </div>
+
+      <div class="tipos-cards">
+        <div class="tipo-card">
+          <div class="icone verde">
+            <i class="fa-solid fa-eye"></i>
+          </div>
+
+          <h3>Deficiência Visual</h3>
+
+          <p>Inclui cegueira e baixa visão.</p>
+
+          <a href="deficienciavisual.html">Saiba mais →</a>
+        </div>
+
+        <div class="tipo-card">
+          <div class="icone azul">
+            <i class="fa-solid fa-ear-deaf"></i>
+          </div>
+
+          <h3>Deficiência Auditiva</h3>
+
+          <p>Inclui surdez e dificuldade de ouvir.</p>
+
+          <a href="deficienciaauditiva.html">Saiba mais →</a>
+        </div>
+
+        <div class="tipo-card">
+          <div class="icone laranja">
+            <i class="fa-solid fa-wheelchair"></i>
+          </div>
+
+          <h3>Deficiência Física e Motora</h3>
+
+          <p>Afeta mobilidade e coordenação.</p>
+
+          <a href="deficienciafisicamotora.html">Saiba mais →</a>
+        </div>
+
+        <div class="tipo-card">
+          <div class="icone roxo">
+            <i class="fa-solid fa-brain"></i>
+          </div>
+
+          <h3>Deficiência Intelectual</h3>
+
+          <p>Afeta o funcionamento intelectual.</p>
+
+          <a href="deficienciaIntelectual.html">Saiba mais →</a>
+        </div>
+      </div>
+
+      <!-- O QUE VOCÊ PRECISA? -->
+    </section>
+    <h2 class="cards-titulo">A informação que você procura!</h2>
+    <p class="subtitulo-home">
+      Informações para Curitiba e região, além de benefícios nacionais.
+    </p>
+
+    <section class="cards" id="servicos">
+      <a href="qrcode.html" class="card azul">
+        <img src="assets/qrcode.png" class="card-img" />
+        <span class="icone-card"></span>
+        <h3>QR Code de Emergência</h3>
+        <p>Dados acessíveis rapidamente</p>
+      </a>
+
+      <a href="cartao_transporte.html" class="card laranja">
+        <img src="assets/onibuscuritiba.png" class="card-img" />
+        <span class="icone-card"></span>
+        <h3>Transporte</h3>
+        <p>Urbano e Rodoviário</p>
+      </a>
+
+      <a href="bpc_loas.html" class="card azul">
+        <img src="assets/bpcloas.png" class="card-img" />
+        <span class="icone-card"></span>
+        <h3>BPC/LOAS</h3>
+        <p>Benefício assistencial</p>
+      </a>
+
+      <a href="estacionamento.html" class="card laranja">
+        <img src="assets/preferencial.png" class="card-img" />
+        <span class="icone-card"></span>
+        <h3>Estacionamento</h3>
+        <p>Credencial PcD</p>
+      </a>
+
+      <a href="direitos_curitiba.html" class="card verde">
+        <img src="assets/direito.png" class="card-img" />
+        <span class="icone-card"></span>
+        <h3>Direitos</h3>
+        <p>Serviços e apoio</p>
+      </a>
+
+      <a href="escolas_especiais.html" class="card azul">
+        <img src="assets/escola.png" class="card-img" />
+        <span class="icone-card"></span>
+        <h3>Escolas</h3>
+        <p>Educação especial</p>
+      </a>
+    </section>
+
+    <!-- SOBRE NÓS -->
+    <div class="sobre-wrapper" id="sobre">
+      <div
+        style="
+          display: flex;
+          align-items: center;
+          gap: 30px;
+          margin: 40px 0 30px;
+          padding-left: 50px;
+        "
+      >
+        <h2
+          style="
+            font-size: 32px;
+            color: #123d8f;
+            border-left: 5px solid #e07b2c;
+            padding-left: 16px;
+            margin: 0;
+            white-space: nowrap;
+          "
+        >
+          Sobre nós
+        </h2>
+        <p style="font-size: 17px; color: #888; font-style: italic; margin: 0">
+          Um projeto nascido do amor, da faculdade e de um menino especial que
+          ilumina cada página deste portal.
+        </p>
+      </div>
+
+      <section class="secao-historia">
+        <div class="historia-texto">
+          <h2>Como tudo começou</h2>
+          <p>
+            O <strong>Laços de Inclusão</strong> nasceu como um projeto de
+            faculdade, mas carrega algo muito maior do que uma nota: carrega
+            amor! Ele foi criado pelas alunas Adriana Mateus e Francieli Mateus
+            Novak, mãe e filha unidas por um propósito em comum, que tem nome e
+            o sorriso mais lindo que conhecemos: Bruno, um menino com Síndrome
+            de Down que, com sua alegria, sua leveza e seu jeito único de estar
+            no mundo, inspirou cada página, cada texto e cada escolha deste
+            portal.
+          </p>
+          <p>
+            O portal foi pensado para informar famílias de pessoas com
+            deficiência sobre seus direitos, trazer informações úteis e
+            facilitar um pouquinho o dia a dia. Sinta-se à vontade para
+            explorar, conhecer e compartilhar.
+          </p>
+        </div>
+        <div class="historia-foto">
+          <img
+            class="foto-bruno"
+            src="assets/foto-bruno.jpeg"
+            alt="Bruno, jovem com Síndrome de Down, sorrindo em um restaurante"
+          />
+          <p class="foto-legenda">
+            <strong>Bruno</strong> a inspiração de tudo isso.
+          </p>
+        </div>
+      </section>
+
+      <section class="secao-mascote">
+        <div class="mascote-foto">
+          <img
+            class="foto-mascote"
+            src="assets/mascote.png"
+            alt="Mascote do portal Laços de Inclusão acenando"
+          />
+          <p class="foto-legenda">Nosso mascotinho</p>
+        </div>
+        <div class="mascote-texto">
+          <h2>Conheça nosso mascotinho</h2>
+          <p>
+            Ele foi criado com carinho para representar o espírito do portal:
+            acolhedor, alegre e cheio de vida. Um companheirinho que nos lembra
+            que inclusão pode, e deve, ser celebrada com leveza e afeto.
+          </p>
+          <p>
+            Assim como o Bruno, nosso mascote acena para o mundo com um sorriso
+            aberto, convidando todo mundo a conhecer, respeitar e incluir.
+          </p>
+        </div>
+      </section>
+
+      <section class="secao-dedicatoria">
+        <span class="dedicatoria-emoji"></span>
+        <h2>Para o Bruno</h2>
+        <p>
+          Este portal é dedicado a você, Bruno. Por nos ensinar todos os dias
+          que o amor não precisa de palavras complicadas, que a alegria é uma
+          escolha e que ser diferente é, na verdade, ser extraordinário.
+          Obrigada por ser nossa maior motivação.
+        </p>
+      </section>
+    </div>
+
+    <footer class="rodape">
+      © 2026 Laços de Inclusão — Feito com 💙 por Adriana e Francieli
+    </footer>
+  </body>
+</html>

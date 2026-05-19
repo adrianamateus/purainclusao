@@ -1,0 +1,540 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transporte - Laços de Inclusão</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+      /* =====================================================
+         ESTILOS EXTRAS — TRANSPORTE
+      ===================================================== */
+
+      .secao-destaques {
+        background: white;
+        border-radius: 28px;
+        padding: 35px;
+        margin-bottom: 30px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+      }
+
+      .grid-destaques {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 22px;
+        margin-top: 28px;
+      }
+
+      .destaque-card {
+        border-radius: 24px;
+        padding: 28px 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .destaque-card::before {
+        content: "";
+        position: absolute;
+        top: -30px;
+        right: -30px;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        opacity: 0.12;
+        background: currentColor;
+      }
+
+      .destaque-card.azul-card {
+        background: #edf6ff;
+        border-left: 5px solid #1e88e5;
+      }
+      .destaque-card.amarelo-card {
+        background: #fffbe6;
+        border-left: 5px solid #f9a825;
+      }
+      .destaque-card.verde-card {
+        background: #ebfff0;
+        border-left: 5px solid #1ea84b;
+      }
+      .destaque-card.roxo-card {
+        background: #f5ebff;
+        border-left: 5px solid #9c27b0;
+      }
+
+      .destaque-icone {
+        font-size: 30px;
+        margin-bottom: 4px;
+      }
+      .destaque-card.azul-card .destaque-icone {
+        color: #1e88e5;
+      }
+      .destaque-card.amarelo-card .destaque-icone {
+        color: #f9a825;
+      }
+      .destaque-card.verde-card .destaque-icone {
+        color: #1ea84b;
+      }
+      .destaque-card.roxo-card .destaque-icone {
+        color: #9c27b0;
+      }
+
+      .destaque-card h3 {
+        font-size: 20px;
+        color: #1a1a2e;
+        margin: 0;
+      }
+      .destaque-card p {
+        font-size: 16px;
+        color: #555;
+        line-height: 1.7;
+        margin: 0;
+      }
+
+      .destaque-tag {
+        display: inline-block;
+        font-size: 12px;
+        font-weight: 700;
+        padding: 4px 12px;
+        border-radius: 20px;
+        width: fit-content;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+      }
+
+      .destaque-card.azul-card .destaque-tag {
+        background: #1e88e5;
+        color: white;
+      }
+      .destaque-card.amarelo-card .destaque-tag {
+        background: #f9a825;
+        color: white;
+      }
+      .destaque-card.verde-card .destaque-tag {
+        background: #1ea84b;
+        color: white;
+      }
+      .destaque-card.roxo-card .destaque-tag {
+        background: #9c27b0;
+        color: white;
+      }
+
+      .secao-banner-info {
+        border-radius: 28px;
+        padding: 40px;
+        margin-bottom: 30px;
+        background: linear-gradient(
+          135deg,
+          #1b7f3b 0%,
+          #1a6b8a 60%,
+          #123d8f 100%
+        );
+        color: white;
+        display: flex;
+        gap: 35px;
+        align-items: center;
+      }
+
+      .banner-info-icone {
+        font-size: 80px;
+        opacity: 0.9;
+        min-width: 90px;
+        text-align: center;
+      }
+      .banner-info-texto h2 {
+        font-size: 34px;
+        color: white;
+        border: none;
+        padding: 0;
+        margin-bottom: 16px;
+      }
+      .banner-info-texto p {
+        font-size: 18px;
+        line-height: 1.8;
+        color: rgba(255, 255, 255, 0.92);
+      }
+
+      .subtitulo-secao {
+        font-size: 18px;
+        color: #666;
+        line-height: 1.7;
+        margin-bottom: 28px;
+        margin-top: -8px;
+      }
+      .recurso-item h3 {
+        font-size: 17px;
+        color: #1a1a2e;
+        margin-bottom: 6px;
+        font-weight: 700;
+      }
+      .recurso-item {
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+      .recurso-item:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      }
+      .bloco-conteudo {
+        border-left: 6px solid #1a6b8a;
+      }
+      .titulo-secao {
+        border-left: 5px solid #e07b2c;
+        padding-left: 16px;
+        margin-bottom: 24px;
+      }
+
+      .frase-final {
+        font-size: 20px;
+        font-weight: 600;
+        color: #444;
+        background: white;
+        border-radius: 18px;
+        padding: 22px 30px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+      }
+
+      .mascote-flutuante {
+        position: static;
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-start;
+        gap: 10px;
+        margin: 16px 0 0 0;
+      }
+
+      .mascote-bolha {
+        background: white;
+        border: 1.5px solid #1a6b8a;
+        border-radius: 16px 16px 4px 16px;
+        padding: 12px 16px;
+        max-width: 220px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .mascote-bolha-titulo {
+        font-size: 11px;
+        font-weight: 700;
+        color: #1a6b8a;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      .mascote-bolha p {
+        font-size: 13px;
+        color: #444;
+        line-height: 1.5;
+        margin: 0;
+      }
+
+      .mascote-avatar {
+        width: 64px;
+        height: 64px;
+        border-radius: 20px;
+        border: 3px solid #1a6b8a;
+        overflow: hidden;
+        flex-shrink: 0;
+        box-shadow: 0 4px 12px rgba(26, 107, 138, 0.2);
+      }
+
+      .mascote-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center top;
+      }
+
+      /* Postos de atendimento */
+      .postos-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 16px;
+        margin-top: 20px;
+      }
+
+      .posto-item {
+        background: #fafafa;
+        border-radius: 18px;
+        padding: 20px;
+        border-left: 4px solid #1a6b8a;
+      }
+
+      .posto-item h3 {
+        font-size: 15px;
+        color: #123d8f;
+        margin-bottom: 6px;
+        font-weight: 700;
+      }
+      .posto-item p {
+        font-size: 14px;
+        color: #666;
+        margin: 0;
+      }
+
+      @media (max-width: 1200px) {
+        .secao-banner-info {
+          flex-direction: column;
+          text-align: center;
+        }
+        .banner-info-icone {
+          font-size: 60px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="pagina-deficiencia">
+      <!-- HERO -->
+      <section class="hero-visual">
+        <div class="voltar-hero">
+          <a href="index.html"
+            ><i class="fa-solid fa-arrow-left"></i> Página inicial</a
+          >
+        </div>
+        <div class="hero-topo">
+          <div class="hero-visual-conteudo">
+            <div class="hero-visual-caixa">
+              <h1>Transporte</h1>
+
+              <div class="mascote-flutuante">
+                <div class="mascote-bolha">
+                  <span class="mascote-bolha-titulo">Sabia que?</span>
+                  <p>
+                    Em Curitiba, pessoas com deficiência têm gratuidade no
+                    transporte coletivo! O cartão isenção é emitido pela URBS
+                    gratuitamente.
+                  </p>
+                </div>
+                <div class="mascote-avatar">
+                  <img
+                    src="assets/mascote.png"
+                    alt="Mascote Laços de Inclusão"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- O QUE É -->
+      <section class="bloco-conteudo">
+        <div class="icone-bloco azul-claro">
+          <i class="fa-solid fa-bus"></i>
+        </div>
+        <div class="texto-bloco">
+          <h2>Transporte acessível</h2>
+          <p>
+            Pessoas com deficiência têm direito a gratuidade e acessibilidade no
+            transporte público. Em Curitiba, o cartão isenção garante acesso
+            gratuito em toda a Rede Integrada de Transporte (RIT). Além disso,
+            existem benefícios estaduais e federais para transporte
+            intermunicipal e interestadual.
+          </p>
+        </div>
+      </section>
+
+      <!-- CARDS — MODALIDADES -->
+      <section class="secao-destaques">
+        <h2 class="titulo-secao">Modalidades de transporte</h2>
+        <div class="grid-destaques">
+          <div class="destaque-card azul-card">
+            <span class="destaque-tag">Curitiba</span>
+            <div class="destaque-icone"><i class="fa-solid fa-bus"></i></div>
+            <h3>Cartão Isenção — URBS</h3>
+            <p>
+              Gratuidade no transporte coletivo de Curitiba (RIT) para pessoas
+              com deficiência física, intelectual, auditiva, visual, múltipla e
+              TEA. Renda de até 3 salários mínimos.
+            </p>
+          </div>
+
+          <div class="destaque-card amarelo-card">
+            <span class="destaque-tag">Paraná</span>
+            <div class="destaque-icone"><i class="fa-solid fa-road"></i></div>
+            <h3>Passe Livre Intermunicipal</h3>
+            <p>
+              Gratuidade no transporte rodoviário entre cidades do Paraná para
+              pessoas com deficiência ou doenças crônicas com renda familiar
+              inferior a dois salários mínimos.
+            </p>
+          </div>
+
+          <div class="destaque-card verde-card">
+            <span class="destaque-tag">Brasil</span>
+            <div class="destaque-icone">
+              <i class="fa-solid fa-map-location-dot"></i>
+            </div>
+            <h3>Passe Livre Interestadual</h3>
+            <p>
+              Gratuidade em viagens interestaduais de ônibus para pessoas com
+              deficiência de baixa renda. Solicitado pelo site
+              passelivre.antt.gov.br com conta GOV.BR.
+            </p>
+          </div>
+
+          <div class="destaque-card roxo-card">
+            <span class="destaque-tag">Especial</span>
+            <div class="destaque-icone">
+              <i class="fa-solid fa-wheelchair-move"></i>
+            </div>
+            <h3>Serviço ACESSO</h3>
+            <p>
+              Serviço porta a porta da URBS com microônibus adaptado com
+              elevador para pessoas com mobilidade reduzida que não conseguem
+              usar o transporte convencional.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- BANNER INFO -->
+      <section class="secao-banner-info">
+        <div class="banner-info-icone">
+          <i class="fa-solid fa-bus-simple"></i>
+        </div>
+        <div class="banner-info-texto">
+          <h2>Como obter o Cartão Isenção em Curitiba</h2>
+          <p>
+            Compare pessoalmente a um dos 9 Postos de Atendimento da URBS
+            (exceto CIC) para foto. O agendamento é obrigatório e deve ser feito
+            pela <strong>Agenda Online da Prefeitura de Curitiba</strong>.
+            Atendimento de segunda a sexta, das 10h às 16h. Documentos: laudo
+            médico, RG, CPF e comprovante de endereço.
+          </p>
+        </div>
+      </section>
+
+      <!-- POSTOS DE ATENDIMENTO -->
+      <section class="secao-cards">
+        <h2 class="titulo-secao">Postos de Atendimento URBS</h2>
+        <p class="subtitulo-secao">
+          Atendimento de segunda a sexta, das 10h às 16h, mediante agendamento
+          prévio. Telefone: 156.
+        </p>
+
+        <div class="postos-grid">
+          <div class="posto-item">
+            <h3>Bairro Novo</h3>
+            <p>R. Tijucas Do Sul, 1700</p>
+          </div>
+          <div class="posto-item">
+            <h3>Boa Vista</h3>
+            <p>Av. Paraná, 3600</p>
+          </div>
+          <div class="posto-item">
+            <h3>Boqueirão</h3>
+            <p>Av. Mal. Floriano Peixoto, 8430</p>
+          </div>
+          <div class="posto-item">
+            <h3>Cajuru</h3>
+            <p>Av. Pref. Maurício Fruet, 2150</p>
+          </div>
+          <div class="posto-item">
+            <h3>Matriz</h3>
+            <p>Pç. Rui Barbosa, 101</p>
+          </div>
+          <div class="posto-item">
+            <h3>Pinheirinho</h3>
+            <p>Av. Winston Churchill, 2033</p>
+          </div>
+          <div class="posto-item">
+            <h3>Portão</h3>
+            <p>R. Carlos Klemtz, 1700</p>
+          </div>
+          <div class="posto-item">
+            <h3>Santa Felicidade</h3>
+            <p>R. Santa Bertilla Boscardin, 213</p>
+          </div>
+          <div class="posto-item">
+            <h3>Tatuquara</h3>
+            <p>R. Olivardo Konoroski Bueno, 100</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- LINKS -->
+      <section class="secao-cards">
+        <h2 class="titulo-secao">Links úteis</h2>
+        <div class="grid-recursos">
+          <div class="recurso-item">
+            <div>
+              <h3>Cartão Isenção — URBS Curitiba</h3>
+              <p>
+                <a
+                  href="https://servicos.curitiba.pr.gov.br/cartao-transporte-isento-emissaorenovacao/115"
+                  target="_blank"
+                  style="color: #1a6b8a"
+                  >Acessar site da URBS →</a
+                >
+              </p>
+            </div>
+          </div>
+          <div class="recurso-item">
+            <div>
+              <h3>Passe Livre Intermunicipal — Paraná</h3>
+              <p>
+                <a
+                  href="https://www.parana.pr.gov.br/servicos/Cidadania/Assistencia-social/Solicitar-Passe-Livre-Intermunicipal-nQ3xlR32"
+                  target="_blank"
+                  style="color: #1a6b8a"
+                  >Acessar site do Governo do Paraná →</a
+                >
+              </p>
+            </div>
+          </div>
+          <div class="recurso-item">
+            <div>
+              <h3>Passe Livre Interestadual — ANTT</h3>
+              <p>
+                <a
+                  href="https://passelivre.antt.gov.br"
+                  target="_blank"
+                  style="color: #1a6b8a"
+                  >Acessar passelivre.antt.gov.br →</a
+                >
+              </p>
+            </div>
+          </div>
+          <div class="recurso-item">
+            <div>
+              <h3>Agendamento URBS</h3>
+              <p>
+                <a
+                  href="https://agendaonline.curitiba.pr.gov.br/#!/login"
+                  target="_blank"
+                  style="color: #1a6b8a"
+                  >Agenda Online da Prefeitura de Curitiba →</a
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <p class="frase-final">
+        <img
+          src="assets/Logo.jpeg"
+          alt="Laços de Inclusão"
+          style="width: 150px; border-radius: 10px"
+        />
+        A inclusão começa com informação e respeito.
+      </p>
+    </main>
+  </body>
+</html>
