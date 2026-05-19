@@ -69,9 +69,10 @@ function imprimirDados() {
   janela.document.write(`
     <html><head><title>Cartão de Emergência</title>
     <style>
-      body { font-family: Arial, sans-serif; display: flex; justify-content: center; padding: 40px; }
-      .card-dados { width: 200px; border: 2px dashed #e07b2c; border-radius: 12px; padding: 10px; font-size: 11px; color: #333; line-height: 1.6; }
-      .card-dados-titulo { font-size: 9px; font-weight: 700; color: #e07b2c; text-transform: uppercase; text-align: center; margin-bottom: 6px; display: flex; align-items: center; justify-content: center; gap: 4px; flex-wrap: wrap; }
+      @page { margin: 10mm; size: auto; }
+      body { font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: flex-start; padding: 20px; margin: 0; }
+      .card-dados { width: 200px; border: 2px dashed #e07b2c; border-radius: 12px; padding: 10px; font-size: 11px; color: #333; line-height: 1.6; display: inline-block; }
+      .card-dados-titulo { font-size: 9px; font-weight: 700; color: #e07b2c; text-transform: uppercase; text-align: center; margin-bottom: 6px; }
       .card-dados-linha { margin-bottom: 2px; word-break: break-word; }
       .card-dados-linha strong { color: #123d8f; }
     </style></head><body>${conteudo}</body></html>
