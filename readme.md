@@ -1,4 +1,4 @@
-# 💙 Laços de Inclusão
+# 💙 Pura de Inclusão
 
 > _Informação, respeito e empatia constroem um mundo mais inclusivo._
 
@@ -6,7 +6,7 @@
 
 ## 📋 Sobre o projeto
 
-O **Laços de Inclusão** nasceu do desejo de tornar a informação sobre deficiência mais acessível, humana e próxima das pessoas. O site reúne conteúdos sobre quatro tipos de deficiência, apresentando de forma clara o que são, quais direitos as pessoas têm e onde buscar apoio em Curitiba.
+O **Pura Inclusão** nasceu do desejo de tornar a informação sobre deficiência mais acessível, humana e próxima das pessoas. O site reúne conteúdos sobre quatro tipos de deficiência, apresentando de forma clara o que são, quais direitos as pessoas têm e onde buscar apoio em Curitiba.
 
 ## Mais de 18 milhões de brasileiros vivem com algum tipo de deficiência. Conhecer seus direitos faz toda a diferença.
 
