@@ -19,24 +19,34 @@ TEL:${telContato}
 NOTE:${nomePCD}\\nIdade: ${idade}\\nCondição: ${condicao}\\nTipo Sanguíneo: ${sanguineo}\\nAlergias: ${alergia}\\nObservações: ${obs}
 END:VCARD`;
 
-  // QR Code principal
+  // QR Code principal — correção máxima para melhor leitura
   const qrDiv = document.getElementById("qrcode");
   qrDiv.innerHTML = "";
-  QRCode.toCanvas(texto, { width: 300 }, function (error, canvas) {
-    if (error) console.error(error);
-    qrDiv.appendChild(canvas);
-  });
+  QRCode.toCanvas(
+    texto,
+    { width: 300, errorCorrectionLevel: "H", margin: 2 },
+    function (error, canvas) {
+      if (error) console.error(error);
+      qrDiv.appendChild(canvas);
+      const btnBaixar = document.getElementById("btn-baixar-img");
+      if (btnBaixar) btnBaixar.style.display = "block";
+    },
+  );
 
-  // QR Code do cartão de impressão
+  // QR Code do cartão de impressão — alta resolução para não perder qualidade no pequeno
   const qrImprimir = document.getElementById("qrcode-imprimir");
   if (qrImprimir) {
     qrImprimir.innerHTML = "";
-    QRCode.toCanvas(texto, { width: 150 }, function (error, canvas) {
-      if (error) console.error(error);
-      canvas.style.width = "100%";
-      canvas.style.height = "100%";
-      qrImprimir.appendChild(canvas);
-    });
+    QRCode.toCanvas(
+      texto,
+      { width: 300, errorCorrectionLevel: "H", margin: 2 },
+      function (error, canvas) {
+        if (error) console.error(error);
+        canvas.style.width = "100%";
+        canvas.style.height = "100%";
+        qrImprimir.appendChild(canvas);
+      },
+    );
   }
 
   // Atualiza nome e condição no cartão QR
@@ -79,4 +89,20 @@ function imprimirDados() {
   `);
   janela.document.close();
   janela.print();
+}
+
+function baixarQRComoImagem() {
+  const canvas = document.querySelector("#qrcode canvas");
+  if (!canvas) return;
+  const escala = 3;
+  const canvasHD = document.createElement("canvas");
+  canvasHD.width = canvas.width * escala;
+  canvasHD.height = canvas.height * escala;
+  const ctx = canvasHD.getContext("2d");
+  ctx.imageSmoothingEnabled = false;
+  ctx.drawImage(canvas, 0, 0, canvasHD.width, canvasHD.height);
+  const link = document.createElement("a");
+  link.download = "qrcode-emergencia.png";
+  link.href = canvasHD.toDataURL("image/png");
+  link.click();
 }
